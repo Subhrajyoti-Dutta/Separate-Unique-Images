@@ -16,19 +16,23 @@ class AlikeImageEstimator():
 						)
 		self.processed_images = util.paraphrase_mining_embeddings(encoded_image)    #Running the Clustering Algorithm
 
-	def getSimilarImages(self, threshold = [0.965, 0.96, 0.95, 0.94], arg = [0.95, 0.8, 0.5, 0.1]):
+	def getSimilarImages(self, threshold = [0.965, 0.96], arg = [0.95, 0.9]):
 
-		grp1 = grp2 = grp3 = grp4 = 0
+		grp1 = grp2  = 0
 
 		for image in self.processed_images:                                         #Separating images on the basis of similarity
 			if image[0] >= threshold[0]:
+				# print(image[1],image[2])
 				grp1 += 1
 			elif image[0] >= threshold[1]:
+				print(image[1],image[2])
 				grp2 += 1
-			elif image[0] >= threshold[2]:
-				grp3 += 1
-			elif image[0] >= threshold[3]:
-				grp4 += 1
+			# elif image[0] >= threshold[2]:
+			# 	print(image[1],image[2])
+			# 	grp3 += 1
+			# elif image[0] >= threshold[3]:
+			# 	print(image[1],image[2])
+			# 	grp4 += 1
 
-
-		return int(arg[0]*grp1 + arg[1]*grp2 + arg[2]*grp3 + arg[3]*grp4)           #Getting the Aprroximate number of images
+		print(grp1,grp2)
+		return int(arg[0]*grp1 + arg[1]*grp2 )           #Getting the Aprroximate number of images
